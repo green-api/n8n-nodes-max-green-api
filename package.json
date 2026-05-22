@@ -1,6 +1,6 @@
 {
   "name": "@green-api/n8n-nodes-max-greenapi",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "n8n node for Green-API for MAX",
   "keywords": [
     "n8n-community-node-package",
