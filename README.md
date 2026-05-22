@@ -1,7 +1,7 @@
-# n8n-nodes-whatsapp-green-api
+# n8n-nodes-max-green-api
 
 Integration node for [Green API](https://green-api.com/) in [n8n](https://n8n.io).  
-This community node allows automation of WhatsApp interactions using Green API — including messaging, file transfer, contacts, groups, statuses, and instance management.
+This community node allows automation of MAX interactions using Green API — including messaging, file transfer, contacts, groups, statuses, and instance management.
 
 ---
 
@@ -13,12 +13,12 @@ The **GreenAPI Node** provides full access to Green API endpoints, enabling you 
 
 ## Installation
 ### Install community node
-Go to `Settings` → `Community Nodes` → `Install`, then enter `@green-api/n8n-nodes-whatsapp-greenapi`
+Go to `Settings` → `Community Nodes` → `Install`, then enter `@green-api/n8n-nodes-max-greenapi`
 
 
 ### Install via npm
 ```bash
-npm install @green-api/n8n-nodes-whatsapp-greenapi
+npm install @green-api/n8n-nodes-max-greenapi
 ```
 
 Restart n8n after installation.
@@ -40,7 +40,7 @@ You can also check out the [installation guide](https://docs.n8n.io/integrations
 
 ## Authentication
 
-To use this node, you need to have an instance and token from [Green-API](https://green-api.com/en) platform and WhatsApp account:
+To use this node, you need to have an instance and token from [Green-API](https://green-api.com/en) platform and MAX account:
 
 - Sign up at [Green-API](https://green-api.com/en)
 - Create an instance
@@ -131,16 +131,14 @@ To use this node, you need to have an instance and token from [Green-API](https:
   "operation": "sendLocation",
   "chatId": "79001234567@c.us",
   "latitude": 40.7128,
-  "longitude": -74.0060,
-  "name": "New York",
-  "address": "NY, USA"
+  "longitude": -74.0060
 }
 ```
 
-### 🔄 Check Whatsapp
+### 🔄 Check Account
 ```json
 {
-  "operation": "checkWhatsapp",
+  "operation": "checkAccount",
   "phoneNumber": 79000000000
 }
 ```

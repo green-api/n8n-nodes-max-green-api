@@ -1,4 +1,4 @@
-// checkWhatsapp.ts
+// checkAccount.ts
 import { IExecuteFunctions, INodeExecutionData } from 'n8n-workflow';
 import { executePerItem } from '../helpers/executePerItem';
 import { getParams } from '../helpers/getParams';
