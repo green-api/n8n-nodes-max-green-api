@@ -15,29 +15,6 @@ The **GreenAPI Node** provides full access to Green API endpoints, enabling you 
 ### Install community node
 Go to `Settings` → `Community Nodes` → `Install`, then enter `@green-api/n8n-nodes-max-greenapi`
 
-
-### Install via npm
-```bash
-npm install @green-api/n8n-nodes-max-greenapi
-```
-
-Restart n8n after installation.
-
-### Manual installation
-1. Copy repository into `~/.n8n/custom/`
-2. Run:
-   ```bash
-   npm install
-   npm run build
-   ```
-3. Restart n8n
-
----
-
-You can also check out the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation.
-
----
-
 ## Authentication
 
 To use this node, you need to have an instance and token from [Green-API](https://green-api.com/en) platform and MAX account:
@@ -51,15 +28,13 @@ To use this node, you need to have an instance and token from [Green-API](https:
 
 | Category | Methods |
 |-----------|----------|
-| 👤 **Account** | getSettings, setSettings, getStateInstance, reboot, logout, getWaSettings |
-| ✉️ **Sending** | sendMessage, sendPoll, sendFileByUrl, sendLocation, sendContact, forwardMessages, sendInteractiveButtons, sendInteractiveButtonsReply |
+| 👤 **Account** | getSettings, setSettings, getStateInstance, reboot, logout, getAccountSettings |
+| ✉️ **Sending** | sendMessage, sendFileByUrl, sendLocation, sendContact
 | 📥 **Receiving** | webhookTrigger, downloadFile |
 | 📜 **Journals** | getChatHistory, getMessage, lastIncomingMessages, lastOutgoingMessages |
 | 🧾 **Queues** | showMessagesQueue, clearMessagesQueue |
 | 👥 **Groups** | createGroup, updateGroupName, getGroupData, addGroupParticipant, deleteGroupParticipant, setGroupAdmin, removeGroupAdmin, leaveGroup |
-| 📣 **Statuses** | sendTextStatus, sendVoiceStatus, sendMediaStatus, deleteStatus, getStatusStatistic, getIncomingStatuses, getOutgoingStatuses |
-| ✅ **Readmark** | readChat |
-| 🧩 **Service** | getContacts, getContactInfo, editMessage, deleteMessage, archiveChat, unarchiveChat, setDisappearingChat |
+| 🧩 **Service** | getContacts, getChats, getContactInfo, editMessage, deleteMessage |
 
 ---
 
@@ -69,7 +44,7 @@ To use this node, you need to have an instance and token from [Green-API](https:
 ```json
 {
   "operation": "sendMessage",
-  "chatId": "79001234567@c.us",
+  "chatId": "41234567",
   "message": "Hello from n8n and Green API!"
 }
 ```
@@ -78,41 +53,9 @@ To use this node, you need to have an instance and token from [Green-API](https:
 ```json
 {
   "operation": "sendFileByUrl",
-  "chatId": "79001234567@c.us",
+  "chatId": "41234567",
   "urlFile": "https://example.com/image.jpg",
   "fileName": "photo.jpg"
-}
-```
-
-### 📣 Send Text Status
-```json
-{
-  "operation": "sendTextStatus",
-  "message": "Working with Green-API and n8n!",
-  "backgroundColor": "#228B22",
-  "font": "SERIF",
-  "participants": []
-}
-```
-
-### 📤 Send Interactive Buttons Reply
-```json
-{
-  "operation": "sendInteractiveButtonsReply",
-  "chatId": "79001234567@c.us",
-  "header": "",
-  "body": "Do you confirm the appointment for tomorrow?",
-  "footer": "",
-  "buttons": [
-        {
-            "buttonId": "1",
-            "buttonText": "Yes"
-        },
-        {
-            "buttonId": "2",
-            "buttonText": "No"
-        }
-    ]
 }
 ```
 
@@ -121,7 +64,7 @@ To use this node, you need to have an instance and token from [Green-API](https:
 {
   "operation": "createGroup",
   "groupName": "My Team",
-  "participants": ["79001234567@c.us", "79007654321@c.us"]
+  "participants": ["12365498", "41234567"]
 }
 ```
 
@@ -129,7 +72,7 @@ To use this node, you need to have an instance and token from [Green-API](https:
 ```json
 {
   "operation": "sendLocation",
-  "chatId": "79001234567@c.us",
+  "chatId": "41234567",
   "latitude": 40.7128,
   "longitude": -74.0060
 }
