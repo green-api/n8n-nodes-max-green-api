@@ -1,0 +1,66 @@
+import {
+	ICredentialType,
+	INodeProperties,
+	ICredentialTestRequest,
+} from 'n8n-workflow';
+
+
+export class GreenApiAuthApi implements ICredentialType {
+	name = 'greenApiAuthApi';
+	displayName = 'Green-API';
+	icon = 'file:greenapi.svg' as const;
+	documentationUrl = 'https://green-api.com/en/docs/api';
+	properties: INodeProperties[] = [
+		{
+			displayName: 'Instance ID',
+			name: 'idInstance',
+			type: 'string',
+			required: true,
+			default: '',
+		},
+		{
+			displayName: 'API Token Key',
+			name: 'apiTokenKey',
+			type: 'string',
+			required: true,
+			typeOptions: {
+				password: true,
+			},
+			default: '',
+		},
+	];
+
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: 'https://api.green-api.com/',
+			url: '={{$baseURL}}/waInstance{{$credentials.idInstance}}/getStateInstance/{{$credentials.apiTokenKey}}',
+			method: 'GET',
+		},
+		rules: [
+			{
+				type: 'responseSuccessBody',
+				properties: {
+					key: 'stateInstance',
+					value: 'notAuthorized',
+					message: 'Instance is not authorized!',
+				},
+			},
+			{
+				type: 'responseSuccessBody',
+				properties: {
+					key: 'stateInstance',
+					value: 'starting',
+					message: 'Instance is in starting state!',
+				},
+			},
+			{
+				type: 'responseSuccessBody',
+				properties: {
+					key: 'stateInstance',
+					value: 'blocked',
+					message: 'Instance is blocked!',
+				},
+			},
+		],
+	};
+}

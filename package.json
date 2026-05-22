@@ -1,0 +1,60 @@
+{
+  "name": "@green-api/n8n-nodes-max-greenapi",
+  "version": "0.0.2",
+  "description": "n8n node for Green-API for MAX",
+  "keywords": [
+    "n8n-community-node-package",
+    "greenapi",
+    "green-api",
+    "MAX",
+    "messaging",
+    "automation"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "author": {
+    "name": "GREEN API",
+    "email": "support@green-api.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/green-api/n8n-nodes-max-green-api.git"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials package.json",
+    "lintfix": "eslint nodes credentials package.json --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/GreenApiAuthApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Greenapi/Greenapi.node.js",
+      "dist/nodes/Greenapi/GreenapiTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@n8n/node-cli": "^0.27.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "eslint": "^9.39.4",
+    "eslint-plugin-n8n-nodes-base": "^1.16.6",
+    "gulp": "^5.0.1",
+    "n8n-workflow": "^2.16.0",
+    "prettier": "^2.7.1",
+    "typescript": "^6.0.2",
+    "zod": "^3.25.76"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
