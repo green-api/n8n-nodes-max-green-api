@@ -74,10 +74,14 @@ export class GreenapiTrigger implements INodeType {
 				const credentials = await this.getCredentials('greenApiAuthApi');
 				const webhookUrl = this.getNodeWebhookUrl('default');
 
-				const response = await this.helpers.httpRequest({
-					method: 'GET',
-					url: `https://api.green-api.com/waInstance${credentials.idInstance}/getSettings/${credentials.apiTokenKey}`,
-				});
+				const response = await this.helpers.httpRequestWithAuthentication.call(
+					this,
+					'greenApiAuthApi',
+					{
+						method: 'GET',
+						url: `https://api.green-api.com/waInstance${credentials.idInstance}/getSettings/${credentials.apiTokenKey}`,
+					},
+				);
 				return response.webhookUrl === webhookUrl;
 			},
 
@@ -85,30 +89,38 @@ export class GreenapiTrigger implements INodeType {
 				const credentials = await this.getCredentials('greenApiAuthApi');
 				const webhookUrl = this.getNodeWebhookUrl('default');
 
-				await this.helpers.httpRequest({
-					method: 'POST',
-					url: `https://api.green-api.com/waInstance${credentials.idInstance}/setSettings/${credentials.apiTokenKey}`,
-					body: {
-						webhookUrl: webhookUrl,
-						incomingWebhook: 'yes',
-						outgoingAPIMessageWebhook: 'yes',
-						outgoingMessageWebhook: 'yes',
+				await this.helpers.httpRequestWithAuthentication.call(
+					this,
+					'greenApiAuthApi',
+					{
+						method: 'POST',
+						url: `https://api.green-api.com/waInstance${credentials.idInstance}/setSettings/${credentials.apiTokenKey}`,
+						body: {
+							webhookUrl: webhookUrl,
+							incomingWebhook: 'yes',
+							outgoingAPIMessageWebhook: 'yes',
+							outgoingMessageWebhook: 'yes',
+						},
+						json: true,
 					},
-					json: true,
-				});
+				);
 			},
 
 			async delete(this: IHookFunctions): Promise<void> {
 				const credentials = await this.getCredentials('greenApiAuthApi');
 
-				await this.helpers.httpRequest({
-					method: 'POST',
-					url: `https://api.green-api.com/waInstance${credentials.idInstance}/setSettings/${credentials.apiTokenKey}`,
-					body: {
-						webhookUrl: '',
+				await this.helpers.httpRequestWithAuthentication.call(
+					this,
+					'greenApiAuthApi',
+					{
+						method: 'POST',
+						url: `https://api.green-api.com/waInstance${credentials.idInstance}/setSettings/${credentials.apiTokenKey}`,
+						body: {
+							webhookUrl: '',
+						},
+						json: true,
 					},
-					json: true,
-				});
+				);
 			},
 		},
 	};
