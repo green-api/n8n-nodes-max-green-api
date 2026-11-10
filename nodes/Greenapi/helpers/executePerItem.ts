@@ -25,9 +25,13 @@ export async function executePerItem<T>(
       });
     } catch (error) {
       if (ctx.continueOnFail()) {
+        const e = error as any;
         returnData.push({
           json: {
-            error: (error as Error).message,
+            error: e.message,
+            description: e.description,
+            httpCode: e.httpCode,
+            details: e.context?.data ?? e.response?.data,
           },
           pairedItem: { item: i },
         });
